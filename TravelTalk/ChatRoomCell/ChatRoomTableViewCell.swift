@@ -42,7 +42,7 @@ class ChatRoomTableViewCell: UITableViewCell {
         profileImageView.image = UIImage(named: chatRoom.chatRoomImage.first!)
         nameLabel.text = chatRoom.chatRoomName
         chatLabel.text = chatRoom.chatList.first?.message
-        dateLabel.text = "88.88.88"
+        dateLabel.text = chatRoom.chatList.last?.dateFormatted
         
     }
     
@@ -50,22 +50,3 @@ class ChatRoomTableViewCell: UITableViewCell {
     
     
 }
-
-//ChatRoom(chatroomId: 1,
-//         chatroomImage: [User.hue.profileImage, User.jack.profileImage, User.bran.profileImage, User.den.profileImage],
-//         chatroomName: "영등포 멘토방",
-//         chatList: [
-//            Chat(user: .hue,
-//                 date: "2024-06-12 21:30",
-//                 message: "열심히 일 하시고 계시는거죠?"),
-//            Chat(user: .bran,
-//                 date: "2024-06-12 22:32",
-//                 message: "영등포 캠퍼스 가고싶어요..."),
-//            Chat(user: .jack,
-//                 date: "2024-06-12 22:38",
-//                 message: "화이팅!!"),
-//            Chat(user: .den,
-//                 date: "2024-06-12 23:42",
-//                 message: "열심히 하고 있습니다!!"),
-//         ]
-//        )

@@ -13,20 +13,21 @@ class ChatRoomViewController: UIViewController {
     
     var chatRoom: ChatRoom?
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-//        navigationItem.title = chatRoom?.chatRoomName ?? ""
-        navigationItem.title = "\(chatRoom?.chatList.count ?? 0)"
+        
+        navigationItem.title = chatRoom?.chatRoomName ?? ""
+        
+        configureTableView()
         
     }
     
-
     
     
     
-
+    
+    
 }
 
 extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
@@ -44,35 +45,35 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.chatRoom?.chatList.count ?? 0
+        chatRoom?.chatList.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let chat = self.chatRoom?.chatList[indexPath.row] {
-            if chat.user == .user {
-                let cell = tableView.dequeueReusableCell(withIdentifier: UserChatRoomTableViewCell.id, for: indexPath) as! UserChatRoomTableViewCell
-                
-                cell.configureData(chat: chat)
-                
-                
-                return cell
-                
-            } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: OthersChatLogTableViewCell.id, for: indexPath) as! OthersChatLogTableViewCell
-                
-                cell.configureData(chat: chat)
-                
-                
-                return cell
-                
-            }
+        
+        guard let chat = chatRoom?.chatList[indexPath.row] else { return UITableViewCell() }
+        
+        if chat.user == .user {
+            let cell = tableView.dequeueReusableCell(withIdentifier: UserChatRoomTableViewCell.id, for: indexPath) as! UserChatRoomTableViewCell
             
+            cell.configureData(chat: chat)
+            
+            
+            return cell
             
         } else {
-            return UITableViewCell()
+            let cell = tableView.dequeueReusableCell(withIdentifier: OthersChatLogTableViewCell.id, for: indexPath) as! OthersChatLogTableViewCell
+            
+            cell.configureData(chat: chat)
+            
+            
+            return cell
+            
         }
         
-        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        UITableView.automaticDimension
     }
     
     

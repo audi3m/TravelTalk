@@ -35,6 +35,34 @@ struct Chat {
     let user: User
     let date: String
     let message: String
+    
+    var timeFormatted: String {
+        let originalFormat = DateFormatter()
+        originalFormat.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        let desiredFormat = DateFormatter()
+        desiredFormat.dateFormat = "hh:mm a"
+        
+        if let date = originalFormat.date(from: date) {
+            return desiredFormat.string(from: date)
+        } else {
+            return ""
+        }
+    }
+    
+    var dateFormatted: String {
+        let originalFormat = DateFormatter()
+        originalFormat.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        let desiredFormat = DateFormatter()
+        desiredFormat.dateFormat = "yy.MM.dd"
+        
+        if let date = originalFormat.date(from: date) {
+            return desiredFormat.string(from: date)
+        } else {
+            return ""
+        }
+    }
 }
 
 

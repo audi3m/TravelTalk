@@ -60,8 +60,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: ChatRoomTableViewCell.id, for: indexPath) as! ChatRoomTableViewCell
         let chatRoom = filterdList[indexPath.row]
         cell.configureData(chatRoom: chatRoom)
-        
-        
         return cell
     }
     
