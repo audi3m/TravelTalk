@@ -71,13 +71,18 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         navigationController?.pushViewController(vc, animated: true)
         
         tableView.reloadRows(at: [indexPath], with: .automatic)
+        
     }
+    
     
     
 }
 
-
-
+// Search
+extension ViewController: UITextFieldDelegate {
+    
+    
+}
 
 
 

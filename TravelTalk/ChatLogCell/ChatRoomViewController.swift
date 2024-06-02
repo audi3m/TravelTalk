@@ -21,12 +21,21 @@ class ChatRoomViewController: UIViewController {
         
         configureTableView()
         
+            let recent = UIBarButtonItem(image: UIImage(systemName: "arrow.down"),
+                                       style: .plain, target: self,
+                                       action: #selector(goToRecent))
+            
+            navigationItem.rightBarButtonItem = recent
+        
     }
     
     
     
-    
-    
+    @objc func goToRecent() {
+        if let lastIndex = chatRoom?.chatList.count {
+            tableView.scrollToRow(at: IndexPath(row: lastIndex-1, section: 0), at: .bottom, animated: true)
+        }
+    } 
     
 }
 
@@ -76,5 +85,10 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         UITableView.automaticDimension
     }
     
+    
+}
+
+// message textField
+extension ChatRoomViewController: UITextFieldDelegate {
     
 }
