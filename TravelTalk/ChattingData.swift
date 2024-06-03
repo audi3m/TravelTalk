@@ -28,6 +28,16 @@ struct ChatRoom {
     let chatRoomImage: [String] //채팅방에 속한 유저 이미지
     let chatRoomName: String //채팅방 이름
     var chatList: [Chat] = [] //채팅 화면에서 사용할 데이터
+    
+    var members: [String] {
+        var set = Set<String>()
+        for chat in chatList {
+            if chat.user != .user {
+                set.insert(chat.user.rawValue)
+            }
+        }
+        return Array(set)
+    }
 }
 
 //채팅 화면에서 사용할 데이터 구조체
@@ -244,3 +254,15 @@ let mockChatList: [ChatRoom] = [
              ]
             ),
 ]
+
+extension [String] {
+    func containsSearchText(text: String) -> Bool {
+        for str in self {
+            if str.contains(text.lowercased()) {
+                return true
+            }
+        }
+        
+        return false
+    }
+}

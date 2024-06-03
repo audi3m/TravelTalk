@@ -107,18 +107,18 @@ extension ChatRoomViewController: UITextFieldDelegate {
         
         sendButton.setImage(.paperplane, for: .normal)
         sendButton.tintColor = UIColor.placeholderText
-        sendButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        sendButton.addTarget(self, action: #selector(sendButtonClicked), for: .touchUpInside)
         
         backgroundView.backgroundColor = .systemGray6
         backgroundView.layer.cornerRadius = 10
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        search()
+        sendButtonClicked()
         return true
     }
     
-    @objc func search() {
+    @objc func sendButtonClicked() {
         guard !messageTextField.text!.isEmpty else { return }
         let message = messageTextField.text!
         let date = Date.now.formatForChat()

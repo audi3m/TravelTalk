@@ -24,6 +24,7 @@ class ViewController: UIViewController {
         filterdList = list
         
         configureTableView()
+        searchTextField.delegate = self
         
     }
     
@@ -78,7 +79,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 // Search
 extension ViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let text = searchTextField.text!.lowercased()
+        search(text: text)
+        return true
+    }
     
+    func search(text: String) {
+        if text.isEmpty {
+            filterdList = list
+        } else {
+            var newList: [ChatRoom] = []
+            for room in list {
+                if room.members.containsSearchText(text: text) {
+                    newList.append(room)
+                }
+            }
+            filterdList = newList
+//            filterdList = list.filter { $0.members.containsSearchText(text: text) }
+        }
+        print("\(filterdList.count)")
+        tableView.reloadData()
+    }
     
 }
 
