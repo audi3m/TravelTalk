@@ -23,6 +23,8 @@
 		D4F2B6D82C0CBA3700F575C2 /* ChatRoom.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4F2B6D72C0CBA3700F575C2 /* ChatRoom.storyboard */; };
 		D4F2B6DB2C0CBB1800F575C2 /* UserChatRoomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4F2B6DA2C0CBB1800F575C2 /* UserChatRoomTableViewCell.xib */; };
 		D4F2B6DC2C0CBB1800F575C2 /* UserChatRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B6D92C0CBB1800F575C2 /* UserChatRoomTableViewCell.swift */; };
+		D4F2B7122C0DED4C00F575C2 /* UIImage+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B7112C0DED4C00F575C2 /* UIImage+Ex.swift */; };
+		D4F2B7142C0DF48C00F575C2 /* Date+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F2B7132C0DF48C00F575C2 /* Date+Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		D4F2B6D72C0CBA3700F575C2 /* ChatRoom.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChatRoom.storyboard; sourceTree = "<group>"; };
 		D4F2B6D92C0CBB1800F575C2 /* UserChatRoomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserChatRoomTableViewCell.swift; sourceTree = "<group>"; };
 		D4F2B6DA2C0CBB1800F575C2 /* UserChatRoomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserChatRoomTableViewCell.xib; sourceTree = "<group>"; };
+		D4F2B7112C0DED4C00F575C2 /* UIImage+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ex.swift"; sourceTree = "<group>"; };
+		D4F2B7132C0DF48C00F575C2 /* Date+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +121,8 @@
 			isa = PBXGroup;
 			children = (
 				D4F2B6D32C0CA4FD00F575C2 /* ID+Ex.swift */,
+				D4F2B7112C0DED4C00F575C2 /* UIImage+Ex.swift */,
+				D4F2B7132C0DF48C00F575C2 /* Date+Ex.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -196,10 +202,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4F2B7142C0DF48C00F575C2 /* Date+Ex.swift in Sources */,
 				D4F2B6B32C0C65B100F575C2 /* ViewController.swift in Sources */,
 				D4F2B6DC2C0CBB1800F575C2 /* UserChatRoomTableViewCell.swift in Sources */,
 				D4F2B6D42C0CA4FD00F575C2 /* ID+Ex.swift in Sources */,
 				D4F2B6C32C0C663100F575C2 /* ChattingData.swift in Sources */,
+				D4F2B7122C0DED4C00F575C2 /* UIImage+Ex.swift in Sources */,
 				D4F2B6D62C0CBA2900F575C2 /* ChatRoomViewController.swift in Sources */,
 				D4F2B6CB2C0CA48500F575C2 /* OthersChatLogTableViewCell.swift in Sources */,
 				D4F2B6AF2C0C65B100F575C2 /* AppDelegate.swift in Sources */,

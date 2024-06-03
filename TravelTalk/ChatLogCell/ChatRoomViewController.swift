@@ -10,6 +10,9 @@ import UIKit
 class ChatRoomViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var messageTextField: UITextField!
+    @IBOutlet var sendButton: UIButton!
+    @IBOutlet var backgroundView: UIView!
     
     var chatRoom: ChatRoom?
     
@@ -19,27 +22,22 @@ class ChatRoomViewController: UIViewController {
         
         navigationItem.title = chatRoom?.chatRoomName ?? ""
         
-        configureTableView()
         
-            let recent = UIBarButtonItem(image: UIImage(systemName: "arrow.down"),
-                                       style: .plain, target: self,
-                                       action: #selector(goToRecent))
-            
-            navigationItem.rightBarButtonItem = recent
+        configureTableView()
+        configureMessageField()
+        
+        messageTextField.delegate = self
+        
+        let recent = UIBarButtonItem(image: .arrowDown, style: .plain, target: self,
+                                     action: #selector(goToRecent))
+        navigationItem.rightBarButtonItem = recent
         
     }
     
-    
-    
-    @objc func goToRecent() {
-        if let lastIndex = chatRoom?.chatList.count {
-            tableView.scrollToRow(at: IndexPath(row: lastIndex-1, section: 0), at: .bottom, animated: true)
-        }
-    } 
-    
-}
-
-extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        goToRecent(animated: false)
+    }
     
     func configureTableView() {
         tableView.delegate = self
@@ -52,6 +50,16 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.register(othersXib, forCellReuseIdentifier: OthersChatLogTableViewCell.id)
         
     }
+    
+    @objc func goToRecent(animated: Bool) {
+        if let lastIndex = chatRoom?.chatList.count {
+            tableView.scrollToRow(at: IndexPath(row: lastIndex-1, section: 0), at: .bottom, animated: animated)
+        }
+    }
+    
+}
+
+extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         chatRoom?.chatList.count ?? 0
@@ -86,9 +94,44 @@ extension ChatRoomViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     
+    
 }
 
 // message textField
 extension ChatRoomViewController: UITextFieldDelegate {
+    
+    func configureMessageField() {
+        
+        messageTextField.placeholder = "메세지를 입력하세요"
+        messageTextField.borderStyle = .none
+        
+        sendButton.setImage(.paperplane, for: .normal)
+        sendButton.tintColor = UIColor.placeholderText
+        sendButton.addTarget(self, action: #selector(search), for: .touchUpInside)
+        
+        backgroundView.backgroundColor = .systemGray6
+        backgroundView.layer.cornerRadius = 10
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        search()
+        return true
+    }
+    
+    @objc func search() {
+        guard !messageTextField.text!.isEmpty else { return }
+        let message = messageTextField.text!
+        let date = Date.now.formatForChat()
+        let chat = Chat(user: .user, date: date, message: message)
+        chatRoom?.chatList.append(chat)
+        
+        messageTextField.text = ""
+        
+        tableView.reloadData()
+        goToRecent(animated: true)
+        
+    }
+    
+    
     
 }

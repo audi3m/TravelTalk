@@ -14,11 +14,9 @@ class ViewController: UIViewController {
     @IBOutlet var magImageView: UIImageView!
     @IBOutlet var searchTextField: UITextField!
     
-    
     let list = mockChatList
     var filterdList: [ChatRoom] = []
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -28,8 +26,7 @@ class ViewController: UIViewController {
         configureTableView()
         
     }
-
-
+    
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -38,10 +35,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        tableView.rowHeight = 80
+        
         searchBarckground.backgroundColor = .systemGray6
         searchBarckground.layer.cornerRadius = 10
         
-        magImageView.image = UIImage(systemName: "magnifyingglass")
+        magImageView.image = .magnifyingglass
         magImageView.tintColor = .placeholderText
         
         searchTextField.placeholder = "친구 이름을 검색해보세요"
@@ -74,12 +73,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    
-    
 }
 
 // Search
 extension ViewController: UITextFieldDelegate {
+    
     
     
 }

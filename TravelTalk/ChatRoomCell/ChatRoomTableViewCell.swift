@@ -14,12 +14,10 @@ class ChatRoomTableViewCell: UITableViewCell {
     @IBOutlet var chatLabel: UILabel!
     @IBOutlet var dateLabel: UILabel!
     
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         configureUI()
+        
     }
     
     func configureUI() {
@@ -41,12 +39,9 @@ class ChatRoomTableViewCell: UITableViewCell {
     func configureData(chatRoom: ChatRoom) {
         profileImageView.image = UIImage(named: chatRoom.chatRoomImage.first!)
         nameLabel.text = chatRoom.chatRoomName
-        chatLabel.text = chatRoom.chatList.first?.message
+        chatLabel.text = chatRoom.chatList.last?.message
         dateLabel.text = chatRoom.chatList.last?.dateFormatted
         
     }
-    
-    
-    
     
 }
