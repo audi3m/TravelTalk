@@ -70,6 +70,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         vc.chatRoom = chatRoom
         navigationController?.pushViewController(vc, animated: true)
         
+        print("didSelectRow \(chatRoom.chatRoomName)")
+        
         tableView.reloadRows(at: [indexPath], with: .automatic)
         
     }
@@ -80,8 +82,8 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
 extension ViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        let text = searchTextField.text!.lowercased()
-        search(text: text)
+        let searchText = searchTextField.text!.lowercased()
+        search(text: searchText)
         return true
     }
     
@@ -89,20 +91,33 @@ extension ViewController: UITextFieldDelegate {
         if text.isEmpty {
             filterdList = list
         } else {
-            var newList: [ChatRoom] = []
-            for room in list {
-                if room.members.containsSearchText(text: text) {
-                    newList.append(room)
-                }
-            }
-            filterdList = newList
-//            filterdList = list.filter { $0.members.containsSearchText(text: text) }
+            filterdList = filterChatRoomsByText(text: text)
         }
-        print("\(filterdList.count)")
         tableView.reloadData()
     }
     
+    func filterChatRoomsByText(text: String) -> [ChatRoom] {
+        var newList: [ChatRoom] = []
+        for room in list {
+            if containsWord(with: text, in: room.members) {
+                newList.append(room)
+            }
+        }
+        return newList
+    }
+    
+    func containsWord(with text: String, in words: [String]) -> Bool {
+        let newText = text.lowercased()
+        for word in words {
+            if word.lowercased().contains(text) {
+                return true
+            }
+        }
+        return false
+    }
+    
 }
+
 
 
 

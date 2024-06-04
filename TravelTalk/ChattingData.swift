@@ -255,14 +255,3 @@ let mockChatList: [ChatRoom] = [
             ),
 ]
 
-extension [String] {
-    func containsSearchText(text: String) -> Bool {
-        for str in self {
-            if str.contains(text.lowercased()) {
-                return true
-            }
-        }
-        
-        return false
-    }
-}
